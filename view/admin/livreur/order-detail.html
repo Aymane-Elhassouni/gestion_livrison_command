@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail commande - LivrEx</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <div class="dashboard">
+        <header class="header">
+            <div class="flex items-center gap-4">
+                <a href="dashboard.html" class="flex items-center gap-4">
+                    <div class="logo-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <span class="logo text-xl">LivrEx</span>
+                </a>
+            </div>
+            <div class="header-actions">
+                <div id="notificationContainer" class="relative"></div>
+                <a href="dashboard.html" class="btn btn-secondary btn-sm">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Retour
+                </a>
+            </div>
+        </header>
+
+        <main class="dashboard-content">
+            <div class="max-w-3xl mx-auto">
+                <div id="alertContainer"></div>
+
+                <div class="glass-card p-6 md:p-8 animate-slide-up">
+                    <div class="flex items-start justify-between mb-6">
+                        <div>
+                            <h1 class="text-2xl font-bold" id="orderTitle">Chargement...</h1>
+                            <p class="text-gray-400" id="orderId"></p>
+                        </div>
+                        <div id="orderStatus"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-sm text-gray-400">Client</p>
+                                <p class="text-white font-medium" id="clientName"></p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">Adresse de départ</p>
+                                <p class="text-white" id="fromAddress"></p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">Destination</p>
+                                <p class="text-white" id="toAddress"></p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-sm text-gray-400">Poids</p>
+                                <p class="text-white" id="weight"></p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">Date création</p>
+                                <p class="text-white" id="createdAt"></p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">Description</p>
+                                <p class="text-white" id="description"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- My Offer -->
+                    <div id="myOfferSection" class="p-4 rounded-lg bg-indigo-500/10 border border-indigo-500/30 mb-6">
+                    </div>
+
+                    <!-- Actions -->
+                    <div id="actionsSection" class="pt-6 border-t border-gray-700"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/notifications.js"></script>
+    <script src="../assets/js/pages/livreur-order-detail.js"></script>
+</body>
+
+</html>

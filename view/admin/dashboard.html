@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - LivrEx</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <div class="dashboard">
+        <header class="header">
+            <div class="flex items-center gap-4">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <rect x="1" y="3" width="15" height="13"></rect>
+                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                    </svg>
+                </div>
+                <span class="logo text-xl">LivrEx</span>
+                <span class="px-2 py-1 text-xs bg-red-500/20 text-red-400 rounded-full font-medium">Admin</span>
+            </div>
+            <div class="header-actions">
+                <div id="notificationContainer" class="relative"></div>
+                <a href="../shared/profil.html" class="user-menu">
+                    <div class="user-avatar bg-red-500">A</div>
+                    <span>Admin</span>
+                </a>
+                <button class="btn btn-secondary btn-sm" onclick="Auth.logout()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    Déconnexion
+                </button>
+            </div>
+        </header>
+
+        <main class="dashboard-content">
+            <h1 class="page-title">Tableau de bord Administrateur</h1>
+            <p class="page-subtitle">Vue d'ensemble et gestion de la plateforme</p>
+
+            <!-- Main Stats Grid -->
+            <div class="stats-grid mb-8">
+                <div class="glass-card stat-card cursor-pointer hover:bg-gray-800/50 transition-colors"
+                    onclick="showStatDetails('total')">
+                    <div class="stat-icon primary">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="stat-value counter" id="totalOrders">0</div>
+                        <div class="stat-label">Commandes créées</div>
+                    </div>
+                </div>
+                <div class="glass-card stat-card cursor-pointer hover:bg-gray-800/50 transition-colors"
+                    onclick="showStatDetails('delivered')">
+                    <div class="stat-icon success">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="stat-value counter" id="deliveredOrders">0</div>
+                        <div class="stat-label">Terminées</div>
+                    </div>
+                </div>
+                <div class="glass-card stat-card cursor-pointer hover:bg-gray-800/50 transition-colors"
+                    onclick="showStatDetails('cancelled')">
+                    <div class="stat-icon danger">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="15" y1="9" x2="9" y2="15"></line>
+                            <line x1="9" y1="9" x2="15" y2="15"></line>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="stat-value counter" id="cancelledOrders">0</div>
+                        <div class="stat-label">Annulées</div>
+                    </div>
+                </div>
+                <div class="glass-card stat-card cursor-pointer hover:bg-gray-800/50 transition-colors"
+                    onclick="showStatDetails('livreurs')">
+                    <div class="stat-icon" style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="stat-value counter" id="activeLivreurs">0</div>
+                        <div class="stat-label">Livreurs actifs</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <!-- Detailed Stats: Financial -->
+                <div class="glass-card p-6">
+                    <h2 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
+                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                        Vue Financière
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="p-4 bg-gray-800/50 rounded-lg">
+                            <div class="text-xs text-gray-400 mb-1">Chiffre d'affaires</div>
+                            <div class="text-xl font-bold text-white"><span id="totalRevenue">0</span>€</div>
+                        </div>
+                        <div class="p-4 bg-gray-800/50 rounded-lg">
+                            <div class="text-xs text-gray-400 mb-1">Commissions (10%)</div>
+                            <div class="text-xl font-bold text-green-400"><span id="commissions">0</span>€</div>
+                        </div>
+                        <div class="p-4 bg-gray-800/50 rounded-lg">
+                            <div class="text-xs text-gray-400 mb-1">Volume en cours</div>
+                            <div class="text-xl font-bold text-indigo-400"><span id="pendingVolume">0</span>€</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Stats: Performance -->
+                <div class="glass-card p-6">
+                    <h2 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                        Performance Plateforme
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 bg-gray-800/50 rounded-lg">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs text-gray-400">Taux de succès</span>
+                                <span class="text-sm font-bold text-green-400" id="successRate">0%</span>
+                            </div>
+                            <div class="w-full h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                                <div id="successRateBar" class="h-full bg-green-500 transition-all duration-1000"
+                                    style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-800/50 rounded-lg">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs text-gray-400">Taux d'acceptation</span>
+                                <span class="text-sm font-bold text-yellow-400" id="acceptanceRate">0%</span>
+                            </div>
+                            <div class="w-full h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                                <div id="acceptanceRateBar" class="h-full bg-yellow-500 transition-all duration-1000"
+                                    style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Table -->
+            <div class="glass-card p-6 animate-slide-up mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold">Gestion des utilisateurs</h2>
+                    <div class="text-sm text-gray-400">
+                        <span id="userCount">0</span> utilisateurs
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Utilisateur</th>
+                                <th>Email</th>
+                                <th>Rôle</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/notifications.js"></script>
+    <script src="../assets/js/pages/admin-dashboard.js"></script>
+</body>
+
+</html>

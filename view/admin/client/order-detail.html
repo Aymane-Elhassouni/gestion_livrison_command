@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail commande - LivrEx</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="header">
+            <div class="flex items-center gap-4">
+                <a href="dashboard.html" class="flex items-center gap-4">
+                    <div class="logo-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <span class="logo text-xl">LivrEx</span>
+                </a>
+            </div>
+            <div class="header-actions">
+                <div id="notificationContainer" class="relative"></div>
+                <a href="dashboard.html" class="btn btn-secondary btn-sm">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Retour
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <div class="max-w-4xl mx-auto">
+                <div id="alertContainer"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Order Details -->
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="glass-card p-6 animate-slide-up">
+                            <div class="flex items-start justify-between mb-6">
+                                <div>
+                                    <h1 class="text-xl font-bold" id="orderTitle">Chargement...</h1>
+                                    <p class="text-gray-400 text-sm" id="orderId"></p>
+                                </div>
+                                <div id="orderStatus"></div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center text-green-400">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-400">Adresse de départ</p>
+                                        <p class="text-white" id="fromAddress"></p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-red-500/20 flex items-center justify-center text-red-400">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-400">Adresse de destination</p>
+                                        <p class="text-white" id="toAddress"></p>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 pt-4 border-t border-gray-700">
+                                    <div>
+                                        <p class="text-sm text-gray-400">Poids</p>
+                                        <p class="text-white font-medium" id="weight"></p>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-400">Date création</p>
+                                        <p class="text-white font-medium" id="createdAt"></p>
+                                    </div>
+                                </div>
+                                <div class="pt-4">
+                                    <p class="text-sm text-gray-400">Description</p>
+                                    <p class="text-white" id="description"></p>
+                                </div>
+                            </div>
+
+                            <!-- Actions -->
+                            <div id="orderActions" class="mt-6 pt-6 border-t border-gray-700"></div>
+                        </div>
+
+                        <!-- Offers Section -->
+                        <div class="glass-card p-6">
+                            <h2 class="text-lg font-bold mb-4">Offres reçues</h2>
+                            <div id="offersContainer"></div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline -->
+                    <div class="glass-card p-6 animate-slide-up" style="animation-delay: 0.1s;">
+                        <h2 class="text-lg font-bold mb-6">Suivi</h2>
+                        <div class="timeline" id="timeline"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/notifications.js"></script>
+    <script src="../assets/js/pages/client-order-detail.js"></script>
+</body>
+
+</html>

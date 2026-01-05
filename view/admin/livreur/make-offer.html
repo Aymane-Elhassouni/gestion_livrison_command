@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faire une offre - LivrEx</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <div class="dashboard">
+        <header class="header">
+            <div class="flex items-center gap-4">
+                <a href="dashboard.html" class="flex items-center gap-4">
+                    <div class="logo-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <span class="logo text-xl">LivrEx</span>
+                </a>
+            </div>
+            <div class="header-actions">
+                <a href="dashboard.html" class="btn btn-secondary btn-sm">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Retour
+                </a>
+            </div>
+        </header>
+
+        <main class="dashboard-content">
+            <div class="max-w-2xl mx-auto">
+                <!-- Order Summary -->
+                <div class="glass-card p-6 mb-6 animate-slide-up">
+                    <h2 class="text-lg font-bold mb-4">Détails de la commande</h2>
+                    <div id="orderSummary"></div>
+                </div>
+
+                <!-- Offer Form -->
+                <div class="glass-card p-6 md:p-8 animate-slide-up" style="animation-delay: 0.1s;">
+                    <h1 class="text-2xl font-bold mb-2">Faire une offre</h1>
+                    <p class="text-gray-400 text-sm mb-6">Proposez vos conditions de livraison</p>
+
+                    <div id="alertContainer"></div>
+
+                    <form id="offerForm" class="space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="form-group">
+                                <label class="form-label" for="price">Prix (€)</label>
+                                <input type="number" id="price" class="form-input" placeholder="25.00" step="0.01"
+                                    min="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="duration">Durée estimée</label>
+                                <input type="text" id="duration" class="form-input" placeholder="2 heures" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="vehicleType">Type de véhicule</label>
+                            <select id="vehicleType" class="form-select" required>
+                                <option value="">Sélectionnez un véhicule</option>
+                                <option value="velo">🚲 Vélo</option>
+                                <option value="moto">🏍️ Moto</option>
+                                <option value="voiture">🚗 Voiture</option>
+                                <option value="camionnette">🚐 Camionnette</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Options</label>
+                            <div class="flex flex-wrap gap-4 mt-2">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" id="express" class="form-checkbox">
+                                    <span class="text-sm">⚡ Livraison Express</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" id="fragile" class="form-checkbox">
+                                    <span class="text-sm">📦 Colis Fragile</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3 pt-4">
+                            <button type="submit" class="btn btn-primary flex-1">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                                Envoyer l'offre
+                            </button>
+                            <a href="dashboard.html" class="btn btn-secondary">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/notifications.js"></script>
+    <script src="../assets/js/pages/livreur-make-offer.js"></script>
+</body>
+
+</html>
