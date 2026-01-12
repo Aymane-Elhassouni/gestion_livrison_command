@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -26,18 +29,22 @@
             </div>
             <div class="header-actions">
                 <div id="notificationContainer" class="relative"></div>
-                <a href="../shared/profil.html" class="user-menu" id="userMenu">
-                    <div class="user-avatar" id="userAvatar">JD</div>
-                    <span id="userName">Jean Dupont</span>
+                <a href="../shared/profil.php" class="user-menu" id="userMenu">
+                    <div class="user-avatar" id="userAvatar"><?php $initials = strtoupper(substr($_SESSION['firstname'] ?? 'U', 0, 1) . substr($_SESSION['lastname'] ?? 'N', 0, 1));
+                        echo htmlspecialchars($initials);?>
+                    </div>
+                    <span id="userName"><?php echo htmlspecialchars(($_SESSION['firstname'] ?? '') . ' ' . ($_SESSION['lastname'] ?? '')); ?></span>
                 </a>
-                <button class="btn btn-secondary btn-sm" onclick="Auth.logout()">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                        <polyline points="16 17 21 12 16 7"></polyline>
-                        <line x1="21" y1="12" x2="9" y2="12"></line>
-                    </svg>
-                    Déconnexion
-                </button>
+                <form action="../../src/index.php?action=logout" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-secondary btn-sm" onclick="Auth.logout()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                        Déconnexion
+                    </button>
+                </form>
             </div>
         </header>
 
@@ -48,7 +55,7 @@
                     <h1 class="page-title">Mes Commandes</h1>
                     <p class="page-subtitle">Gérez et suivez vos commandes en temps réel</p>
                 </div>
-                <a href="create-order.html" class="btn btn-primary">
+                <a href="create-order.php" class="btn btn-primary">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="12" y1="5" x2="12" y2="19"></line>
                         <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -119,10 +126,10 @@
         </main>
     </div>
 
-    <script src="../assets/js/app.js"></script>
+    <!-- <script src="../assets/js/app.js"></script>
     <script src="../assets/js/auth.js"></script>
     <script src="../assets/js/notifications.js"></script>
-    <script src="../assets/js/pages/client-dashboard.js"></script>
+    <script src="../assets/js/pages/client-dashboard.js"></script> -->
 </body>
 
 </html>

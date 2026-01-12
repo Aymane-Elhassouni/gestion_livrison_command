@@ -27,7 +27,7 @@
                 </a>
             </div>
             <div class="header-actions">
-                <a href="dashboard.html" class="btn btn-secondary btn-sm">
+                <a onclick="window.history.back();" class="btn btn-secondary btn-sm">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="19" y1="12" x2="5" y2="12"></line>
                         <polyline points="12 19 5 12 12 5"></polyline>
@@ -87,7 +87,7 @@
                                 </svg>
                                 Créer la commande
                             </button>
-                            <a href="dashboard.html" class="btn btn-secondary">Annuler</a>
+                            <a href="dashboard.php" class="btn btn-secondary">Annuler</a>
                         </div>
                     </form>
                 </div>
@@ -95,9 +95,9 @@
         </main>
     </div>
 
-    <script src="../assets/js/app.js"></script>
+    <!-- <script src="../assets/js/app.js"></script>
     <script src="../assets/js/auth.js"></script>
-    <script src="../assets/js/pages/client-create-order.js"></script>
+    <script src="../assets/js/pages/client-create-order.js"></script> -->
 </body>
 
 </html>

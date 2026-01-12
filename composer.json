@@ -1,0 +1,10 @@
+{
+    "name": "youcode/gestion_livrison_command",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "src\\": "src/"
+        }
+    }
+    
+}

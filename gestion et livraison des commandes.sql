@@ -6,23 +6,8 @@ CREATE TABLE users(
 	firstname VARCHAR(50) NOT NULL,
     lastname VARCHAR(50) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL
-)ENGINE = InnoDB;
-
-CREATE TABLE clients(
-	user_id INT PRIMARY KEY,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-    
-)ENGINE = InnoDB;
-
-CREATE TABLE admins(
-	user_id INT PRIMARY KEY,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-)ENGINE = InnoDB;
-
-CREATE TABLE liverurs(
-	user_id INT PRIMARY KEY,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    password VARCHAR(255) NOT NULL,
+    role ENUM('client','livreur','admin')
 )ENGINE = InnoDB;
 
 CREATE TABLE notifications(
@@ -52,3 +37,6 @@ CREATE TABLE offers(
     FOREIGN KEY (commande_id) REFERENCES commandes(id),
     FOREIGN KEY (livreur_id) REFERENCES users(id)
 )ENGINE = InnoDB;
+
+ALTER TABLE commandes
+CHANGE COLUMN user_id client_id INT;

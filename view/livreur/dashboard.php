@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -25,18 +28,22 @@
             </div>
             <div class="header-actions">
                 <div id="notificationContainer" class="relative"></div>
-                <a href="../shared/profil.html" class="user-menu">
-                    <div class="user-avatar" id="userAvatar">PM</div>
-                    <span id="userName">Pierre Martin</span>
+                <a href="../shared/profil.php" class="user-menu">
+                    <div class="user-avatar" id="userAvatar"><?php $initials = strtoupper(substr($_SESSION['firstname'] ?? 'U', 0, 1) . substr($_SESSION['lastname'] ?? 'N', 0, 1));
+                        echo htmlspecialchars($initials);?>
+                    </div>
+                    <span id="userName"><?php echo htmlspecialchars(($_SESSION['firstname'] ?? '') . ' ' . ($_SESSION['lastname'] ?? '')); ?></span>
                 </a>
-                <button class="btn btn-secondary btn-sm" onclick="Auth.logout()">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                        <polyline points="16 17 21 12 16 7"></polyline>
-                        <line x1="21" y1="12" x2="9" y2="12"></line>
-                    </svg>
-                    Déconnexion
-                </button>
+                <form action="../../src/index.php?action=logout" method="POST" style="display: inline;">
+                    <button class="btn btn-secondary btn-sm">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                        Déconnexion
+                    </button>
+                </form>
             </div>
         </header>
 
@@ -142,10 +149,10 @@
         </main>
     </div>
 
-    <script src="../assets/js/app.js"></script>
+    <!-- <script src="../assets/js/app.js"></script>
     <script src="../assets/js/auth.js"></script>
     <script src="../assets/js/notifications.js"></script>
-    <script src="../assets/js/pages/livreur-dashboard.js"></script>
+    <script src="../assets/js/pages/livreur-dashboard.js"></script> -->
 </body>
 
 </html>
